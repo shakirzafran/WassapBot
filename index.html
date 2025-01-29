@@ -35,6 +35,7 @@
             width: 100%;
             top: 0;
             z-index: 1000;
+			box-sizing: border-box; /* Ensure padding doesn't affect layout */
         }
 
         .logo {
@@ -251,20 +252,7 @@
             text-align: center;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .feature-cards {
-                grid-template-columns: 1fr;
-            }
-        }
+
 		
 /* Feedback Section */
 .feedback-section {
@@ -344,12 +332,6 @@
     margin: 0;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .feedback-grid {
-        grid-template-columns: 1fr;
-    }
-}
 
 
 /* FAQ Section */
@@ -409,63 +391,204 @@
     transform: rotate(180deg);
 }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
+    /* General Image Styling */
+    .features img {
+        width: 100%;
+        height: auto;
+        max-width: 1000px; /* Ensures it doesn't exceed original size */
+        display: block;
+        margin: 0 auto 10px auto;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 844px) {
+        .features img {
+            width: 90%; /* Reduce size on smaller screens */
         }
+    }
 
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                background: white;
-                position: absolute;
-                top: 60px;
-                right: 0;
-                width: 100%;
-                text-align: center;
-                padding: 1rem 0;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
+    @media (max-width: 480px) {
+        .features img {
+            width: 100%; /* Full width for mobile */
         }
+    }
 
+/* Sidebar styles (Initially hidden off-screen) */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Initially hidden off-screen */
+    width: 250px;
+    height: 100%;
+    background-color: white;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.sidebar-links {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.sidebar-buttons {
+    margin-top: 2rem;
+}
+
+.sidebar a {
+    text-decoration: none;
+    color: var(--dark-text);
+    font-weight: 500;
+}
+
+/* Sidebar when visible */
+.sidebar.open {
+    left: 0; /* Show sidebar */
+}
+
+/* Hamburger Icon (Visible on mobile) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    z-index: 1001; /* Ensure it's above everything else */
+}
+
+/* Button styles */
+.button {
+    background: var(--whatsapp-green);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.login-button {
+    background-color: #6495ED; /* Cornflower blue */
+    color: white;
+}
+
+.button:hover {
+    background: var(--whatsapp-dark);
+}
+
+/* Mobile and Tablet Specific Styles */
+@media (max-width: 768px) {
+    .nav-links,
+    .button-container {
+        display: none; /* Hide on mobile */
+    }
+
+    .hamburger {
+        display: block; /* Show hamburger icon on mobile */
+        position: absolute;
+        top: 1.2rem;
+        right: 1.5rem; /* Adjust the position of the hamburger */
+    }
+
+    /* Sidebar when visible */
+    .sidebar.open {
+        left: 0; /* Show sidebar */
+    }
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .hero {
+        flex-direction: column; /* Stack text and image vertically */
+        justify-content: center; /* Center content vertically */
+        padding: 6rem 2rem 4rem; /* Adjust padding for smaller screens */
+    }
+
+    .hero-text {
+        margin-right: 0; /* Remove right margin on smaller screens */
+        text-align: center; /* Center align text */
+        margin-bottom: 2rem; /* Add some space between text and image */
+    }
+
+    .hero h1 {
+        font-size: 2.5rem; /* Adjust h1 font size */
+    }
+
+    .hero p {
+        font-size: 1rem; /* Adjust p font size */
+    }
+
+    .hero-image {
+        width: 150px; /* Smaller image size for tablet */
+        height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 2rem; /* Further adjust h1 font size for mobile */
+    }
+
+    .hero p {
+        font-size: 0.9rem; /* Further adjust p font size for readability */
+    }
+
+    .hero-image {
+        width: 120px; /* Even smaller image size for mobile */
+        height: 150px;
+    }
+}
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
-<div class="logo">
-    <img src="images/WassapBotpng.png" alt="WassapBot Logo" style="height: 50px; width: auto; margin-right: 30px;">
+<nav>
+    <div class="logo">
+        <img src="images/WassapBotpng.png" alt="WassapBot Logo" style="height: 50px; width: auto; margin-right: 30px;">
+    </div>
+
+    <!-- Regular navigation links (hidden on mobile) -->
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Button Container (hidden on mobile) -->
+    <div class="button-container">
+        <button class="button">Start Free Trial</button>
+        <button class="button login-button">Log In</button>
+    </div>
+
+    <!-- Hamburger Icon for mobile -->
+    <div class="hamburger" onclick="toggleSidebar()">
+        <img src="images/hbg.png" alt="Hamburger Icon" style="height: 30px; width: auto;">
+    </div>
+</nav>
+
+<!-- Sidebar Menu (hidden by default) -->
+<div id="sidebar" class="sidebar">
+    <div class="sidebar-links">
+        <a href="#features">Features</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact">Contact</a>
+    </div>
+    <div class="sidebar-buttons">
+        <button class="button">Start Free Trial</button>
+        <button class="button login-button">Log In</button>
+    </div>
 </div>
 
-<div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#benefits">Benefits</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#contact">Contact</a>
-</div>
-
-<!-- Align buttons using flexbox -->
-<div class="button-container">
-    <button class="button">Start Free Trial</button>
-    <button class="button login-button">Log In</button>
-</div>
-
-    </nav>
 
     <!-- Hero Section -->
 <section class="hero" style="display: flex; align-items: center; justify-content: center;">
     <!-- Text Content -->
+	<div class="hero-text">
     <div style="margin-right: 70px;">
         <h1>Automate Your WhatsApp Business<br>24/7 Customer Engagement</h1>
         <p>Transform your business communication with our powerful WhatsApp automation bot. Send bulk messages, auto-reply, and manage customer interactions efficiently.</p>
@@ -473,6 +596,7 @@
             <button class="button">Get Started Now</button>
         </div>
     </div>
+	</div>
 
     <!-- Animated GIF -->
     <img src="images/phonechat.gif" alt="chat" style="width: 200px; height: 250px; transform: rotate(7deg);">
@@ -480,27 +604,27 @@
 
 
     <!-- Features Section -->
-    <section class="features" id="features">
-	            <img src="images/dashboard.png" alt="Dashboard Image" style="width: 1000px; height: 500px; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
-        <h2 class="section-title">Powerful Features</h2>
-        <div class="feature-cards">
-            <div class="feature-card">
-                <i data-feather="send" size="32"></i>
-                <h3>Bulk Message Sending</h3>
-                <p>Send personalized messages to thousands of contacts instantly. Schedule campaigns and track delivery status.</p>
-            </div>
-            <div class="feature-card">
-                <i data-feather="message-square" size="32"></i>
-                <h3>Auto-Reply System</h3>
-                <p>Set up intelligent auto-responses based on keywords. Never miss a customer query, even outside business hours.</p>
-            </div>
-            <div class="feature-card">
-                <i data-feather="clock" size="32"></i>
-                <h3>24/7 Operation</h3>
-                <p>Your virtual assistant works round the clock, ensuring continuous customer engagement and support.</p>
-            </div>
+<section class="features" id="features">
+    <img src="images/dashboard.png" alt="Dashboard Image">
+    <h2 class="section-title">Powerful Features</h2>
+    <div class="feature-cards">
+        <div class="feature-card">
+            <i data-feather="send" size="32"></i>
+            <h3>Bulk Message Sending</h3>
+            <p>Send personalized messages to thousands of contacts instantly. Schedule campaigns and track delivery status.</p>
         </div>
-    </section>
+        <div class="feature-card">
+            <i data-feather="message-square" size="32"></i>
+            <h3>Auto-Reply System</h3>
+            <p>Set up intelligent auto-responses based on keywords. Never miss a customer query, even outside business hours.</p>
+        </div>
+        <div class="feature-card">
+            <i data-feather="clock" size="32"></i>
+            <h3>24/7 Operation</h3>
+            <p>Your virtual assistant works round the clock, ensuring continuous customer engagement and support.</p>
+        </div>
+    </div>
+</section>
 
     <!-- Benefits Section -->
     <section class="benefits" id="benefits">
@@ -713,22 +837,29 @@
 
 <script>
 // FAQ Toggle functionality
+// FAQ Toggle functionality
 document.querySelectorAll('.faq-question').forEach(question => {
     question.addEventListener('click', () => {
         const faqItem = question.parentElement;
-        const isActive = faqItem.classList.contains('active');
         
-        // Close all FAQs
+        // Toggle the active state of the clicked FAQ item
+        faqItem.classList.toggle('active');
+        
+        // Close all other FAQs (except the clicked one)
         document.querySelectorAll('.faq-item').forEach(item => {
-            item.classList.remove('active');
+            if (item !== faqItem) {
+                item.classList.remove('active');
+            }
         });
-        
-        // Open clicked FAQ if it wasn't active
-        if (!isActive) {
-            faqItem.classList.add('active');
-        }
     });
 });
+
+// Sidebar Toggle Function
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('open'); // Toggle the 'open' class to show/hide the sidebar
+}
+
 </script>
     <!-- Footer -->
     <footer>
