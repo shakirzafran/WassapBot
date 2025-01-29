@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Business Bot - 24/7 Automation Solution</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --whatsapp-green: #25D366;
+            --whatsapp-dark: #128C7E;
+            --dark-text: #1a1a1a;
+        }
+
+        body {
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            padding: 1rem 5%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--whatsapp-dark);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        .button {
+            background: var(--whatsapp-green);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+.login-button {
+    background-color: #6495ED; /* Cornflower blue */
+    color: white;
+}
+        .button:hover {
+            background: var(--whatsapp-dark);
+        }
+
+       /* Hero Section */
+.hero {
+    text-align: center;
+    padding: 8rem 1rem 4rem;
+    background: linear-gradient(135deg, #fff9c4 0%, #ff8637 100%);
+}
+
+
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            color: #4a4a4a;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 5%;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark-text);
+        }
+
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+.feature-card {
+    padding: 2rem;
+    background-color: #f4f4f4;  /* Light grey background */
+    border: 1px solid #e5e7eb;
+    border-radius: 1rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card i {
+    color: var(--whatsapp-green);
+    margin-bottom: 1rem;
+}
+
+
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 5%;
+            background: #f4f4f4;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .benefit-item i {
+            color: var(--whatsapp-green);
+        }
+
+        /* Pricing */
+        .pricing {
+            padding: 4rem 5%;
+            background: white;
+        }
+
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .price-card {
+            padding: 2rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .price-card.popular {
+            border: 2px solid var(--whatsapp-green);
+            position: relative;
+        }
+
+        .price-card.popular::before {
+            content: "Most Popular";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--whatsapp-green);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 1rem;
+            font-size: 0.875rem;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--dark-text);
+            margin: 1rem 0;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 4rem 5%;
+            background: #f9fafb;
+        }
+
+        .contact form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-text);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-text);
+            color: white;
+            padding: 2rem 5%;
+            text-align: center;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+		
+/* Feedback Section */
+.feedback-section {
+    margin-top: 2rem;
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Section Title */
+.section-title {
+    font-size: 1.5rem;
+    color: var(--dark-text);
+    margin-bottom: 1.5rem;
+}
+
+/* Feedback Grid */
+.feedback-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px; /* Set a max width to prevent the grid from being too wide */
+    margin: 0 auto; /* Center the grid */
+}
+
+/* Feedback Item */
+.feedback-item {
+    background: #f4f4f4;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    transition: transform 0.3s ease;
+}
+
+.feedback-item:hover {
+    transform: translateY(-5px);
+}
+
+/* Feedback Header (stars) */
+.feedback-header {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+/* Star Icon */
+.star-icon {
+    color: #FFD700;
+    width: 20px;
+    height: 20px;
+}
+
+/* Feedback Content */
+.feedback-content {
+    color: var(--dark-text);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Feedback Author */
+.feedback-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.author-info h4 {
+    color: var(--dark-text);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.author-info p {
+    color: #666;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .feedback-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* FAQ Section */
+.faq-section {
+    margin-top: 2rem;
+    background: #f4f4f4;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Adjust the width of the FAQ container */
+.faq-container {
+    display: grid;
+    gap: 1rem;
+    max-width: 800px; /* Set a max width to avoid excessive width */
+    margin: 0 auto; /* Center the container */
+	background: #fffffff;
+}
+
+.faq-item {
+    border: 1px solid #eee;
+    border-radius: 0.5rem;
+    overflow: hidden;
+	background: #fffffff;
+}
+
+.faq-question {
+    padding: 1rem;
+    background: #fffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--dark-text);
+}
+
+.faq-question:hover {
+    background: #fffffff;
+}
+
+.faq-answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.faq-item.active .faq-answer {
+    padding: 1rem;
+    max-height: 200px;
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                background: white;
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 100%;
+                text-align: center;
+                padding: 1rem 0;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+<div class="logo">
+    <img src="images/WassapBotpng.png" alt="WassapBot Logo" style="height: 50px; width: auto; margin-right: 30px;">
+</div>
+
+<div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#benefits">Benefits</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#contact">Contact</a>
+</div>
+
+<!-- Align buttons using flexbox -->
+<div class="button-container">
+    <button class="button">Start Free Trial</button>
+    <button class="button login-button">Log In</button>
+</div>
+
+    </nav>
+
+    <!-- Hero Section -->
+<section class="hero" style="display: flex; align-items: center; justify-content: center;">
+    <!-- Text Content -->
+    <div style="margin-right: 70px;">
+        <h1>Automate Your WhatsApp Business<br>24/7 Customer Engagement</h1>
+        <p>Transform your business communication with our powerful WhatsApp automation bot. Send bulk messages, auto-reply, and manage customer interactions efficiently.</p>
+        <div class="button-group">
+            <button class="button">Get Started Now</button>
+        </div>
+    </div>
+
+    <!-- Animated GIF -->
+    <img src="images/phonechat.gif" alt="chat" style="width: 200px; height: 250px; transform: rotate(7deg);">
+</section>
+
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+	            <img src="images/dashboard.png" alt="Dashboard Image" style="width: 1000px; height: 500px; margin-bottom: 10px; display: block; margin-left: auto; margin-right: auto;">
+        <h2 class="section-title">Powerful Features</h2>
+        <div class="feature-cards">
+            <div class="feature-card">
+                <i data-feather="send" size="32"></i>
+                <h3>Bulk Message Sending</h3>
+                <p>Send personalized messages to thousands of contacts instantly. Schedule campaigns and track delivery status.</p>
+            </div>
+            <div class="feature-card">
+                <i data-feather="message-square" size="32"></i>
+                <h3>Auto-Reply System</h3>
+                <p>Set up intelligent auto-responses based on keywords. Never miss a customer query, even outside business hours.</p>
+            </div>
+            <div class="feature-card">
+                <i data-feather="clock" size="32"></i>
+                <h3>24/7 Operation</h3>
+                <p>Your virtual assistant works round the clock, ensuring continuous customer engagement and support.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <h2 class="section-title">Why Choose WassapBot?</h2>
+        <div class="feature-cards">
+            <div class="benefit-item">
+                <i data-feather="trending-up" size="24"></i>
+                <div>
+                    <h3>Increase Response Rate</h3>
+                    <p>Respond to customer queries instantly, improving satisfaction and conversion rates.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <i data-feather="dollar-sign" size="24"></i>
+                <div>
+                    <h3>Save Costs</h3>
+                    <p>Reduce customer service costs by automating routine responses and inquiries.</p>
+                </div>
+            </div>
+            <div class="benefit-item">
+                <i data-feather="bar-chart-2" size="24"></i>
+                <div>
+                    <h3>Analytics & Reports</h3>
+                    <p>Get detailed insights into message performance and customer engagement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <h2 class="section-title">Simple, Transparent Pricing</h2>
+        <div class="price-cards">
+            <div class="price-card">
+                <h3>Starter</h3>
+                <div class="price">RM29<span>/month</span></div>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✓ 1,000 messages/month</li>
+                    <li>✓ Basic auto-replies</li>
+                    <li>✓ Business hours support</li>
+                    <li>✓ Basic analytics</li>
+                </ul>
+                <button class="button" style="margin-top: 1rem;">Get Started</button>
+            </div>
+            <div class="price-card popular">
+                <h3>Professional</h3>
+                <div class="price">RM79<span>/month</span></div>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✓ 5,000 messages/month</li>
+                    <li>✓ Advanced auto-replies</li>
+                    <li>✓ 24/7 support</li>
+                    <li>✓ Advanced analytics</li>
+                    <li>✓ Custom templates</li>
+                </ul>
+                <button class="button" style="margin-top: 1rem;">Get Started</button>
+            </div>
+            <div class="price-card">
+                <h3>Enterprise</h3>
+                <div class="price">RM199<span>/month</span></div>
+                <ul style="list-style: none; padding: 0;">
+                    <li>✓ Unlimited messages</li>
+                    <li>✓ Custom integrations</li>
+                    <li>✓ Priority support</li>
+                    <li>✓ Full API access</li>
+                    <li>✓ Dedicated account manager</li>
+                </ul>
+                <button class="button" style="margin-top: 1rem;">Contact Sales</button>
+            </div>
+        </div>
+    </section>
+	
+	<!-- FAQ Section -->
+<div class="faq-section">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How does the auto-reply feature work?</span>
+                <i data-feather="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Our auto-reply system uses keyword detection to send appropriate responses instantly. You can set up custom templates and rules for different types of inquiries, ensuring accurate and quick responses 24/7.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Is bulk messaging allowed on WhatsApp?</span>
+                <i data-feather="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Yes, but with proper guidelines. Our system ensures compliance with WhatsApp's business policies, preventing spam flags while allowing you to send personalized bulk messages to your opted-in contacts.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How secure is the WhatsApp Bot?</span>
+                <i data-feather="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Our bot operates with end-to-end encryption and follows WhatsApp's security protocols. Your data and conversations are fully secured and comply with privacy regulations including GDPR.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>Can I customize the bot's responses?</span>
+                <i data-feather="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Absolutely! You can create custom response templates, set up specific keywords, and personalize messages. The bot can be trained to handle various scenarios based on your business needs.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>What analytics are available?</span>
+                <i data-feather="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Our dashboard provides comprehensive analytics including message delivery rates, response times, customer engagement metrics, popular inquiries, and conversion tracking. You can export reports for detailed analysis.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                <span>How do I get started?</span>
+                <i data-feather="chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Getting started is easy! Sign up for an account, connect your WhatsApp Business API, set up your initial responses, and you're ready to go. Our team provides full support during the setup process.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- User Feedback Section -->
+<div class="feedback-section">
+    <h2 class="section-title">User Feedback</h2>
+    <div class="feedback-grid">
+        <div class="feedback-item">
+            <div class="feedback-header">
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+            </div>
+            <div class="feedback-content">
+                <p>"This bot has transformed our customer service. Response time reduced by 90% and customer satisfaction is at an all-time high!"</p>
+            </div>
+            <div class="feedback-author">
+                <div class="user-avatar">
+                    <i data-feather="user"></i>
+                </div>
+                <div class="author-info">
+                    <h4>John Smith</h4>
+                    <p>E-commerce Owner</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback-item">
+            <div class="feedback-header">
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+            </div>
+            <div class="feedback-content">
+                <p>"The bulk messaging feature is a game-changer. We can now reach thousands of customers instantly with personalized messages."</p>
+            </div>
+            <div class="feedback-author">
+                <div class="user-avatar">
+                    <i data-feather="user"></i>
+                </div>
+                <div class="author-info">
+                    <h4>Sarah Johnson</h4>
+                    <p>Marketing Manager</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="feedback-item">
+            <div class="feedback-header">
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star" class="star-icon"></i>
+                <i data-feather="star-half" class="star-icon"></i>
+            </div>
+            <div class="feedback-content">
+                <p>"24/7 automated responses have helped us expand globally. Our customers get instant support regardless of time zones."</p>
+            </div>
+            <div class="feedback-author">
+                <div class="user-avatar">
+                    <i data-feather="user"></i>
+                </div>
+                <div class="author-info">
+                    <h4>David Chen</h4>
+                    <p>Startup Founder</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// FAQ Toggle functionality
+document.querySelectorAll('.faq-question').forEach(question => {
+    question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        const isActive = faqItem.classList.contains('active');
+        
+        // Close all FAQs
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        
+        // Open clicked FAQ if it wasn't active
+        if (!isActive) {
+            faqItem.classList.add('active');
+        }
+    });
+});
+</script>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 WassapBot. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+    </script>
+</body>
+</html>
